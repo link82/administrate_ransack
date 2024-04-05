@@ -28,6 +28,14 @@ class Post < ApplicationRecord
     title.upcase
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    ["author", "author_profile", "pictures", "post_tags", "tags"]
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["author_id", "category", "created_at", "description", "dt", "id", "id_value", "position", "published", "title", "updated_at"]
+  end
+
   class << self
     def ransackable_scopes(_auth_object = nil)
       %i[by_category recents]
